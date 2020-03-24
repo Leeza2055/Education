@@ -1,0 +1,25 @@
+{% extends "admintemplates/base.html" %}
+{% load static %}
+{% block content %}
+<h3>{{org.name}}</h3>
+<img src="{{org.logo.url}}" />
+<p>{{org.about}}</p>
+<img src="{{org.about_image1.url}}" />
+<img src="{{org.about_image2.url}}" />
+<p>Mission_Vision: {{org.mission_vision}}</p>
+<p>Graduated_Students: {{org.graduated_students}}</p>
+<p>Certified_Teachers: {{org.certified_teachers}}</p>
+<p>Years: {{org.years}}</p>
+<p>Email: {{org.email}}</p>
+<p>Phone_no:{{org.phone_no}}</p>
+<p>Address:{{org.address}}</p>
+<p>Facebook:{{org.facebook}}</p>
+<p>Twitter:{{org.twitter}}</p>
+<p>Linkedin: {{org.linkedin}}</p>
+
+
+
+
+
+
+{% endblock %}

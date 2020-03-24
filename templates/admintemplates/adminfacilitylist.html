@@ -1,0 +1,49 @@
+
+{% extends "admintemplates/base.html" %}
+{% load static %}
+{% block content %}
+<!-- main-heading -->
+<h2 class="main-title-w3layouts mb-2 text-center">Widgets</h2>
+<!--// main-heading -->
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Stats -->
+        <div class="outer-w3-agile col-xl">
+            <div class="work-progres">
+                <h4 class="tittle-w3-agileits mb-4">Recent Followers</h4>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Created at</th>
+                                <th>status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for facility in facilitylist %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{facility.title}}</td>
+                                <td>{{facility.created_at}}</td>
+                                <td>{% if facility.active %}active{% else %}inactive{% endif %}</td>
+                                <td><a class="btn btn-info" href="{% url 'eduapp:adminfacilityupdate' facility.pk %}">Update</a>
+                                    <a class="btn btn-danger" href="{% url 'eduapp:adminfacilitydelete' facility.pk %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--// Stats -->
+
+    </div>
+</div>
+
+{% endblock %}

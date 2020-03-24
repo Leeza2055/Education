@@ -1,0 +1,108 @@
+{% extends "clienttemplates/base.html" %}
+
+{% load static %}
+
+{% block programmenu %}
+active
+{% endblock %}
+
+{% block content %}
+	<!-- banner -->
+	<div class="inner_page_agile">
+
+	</div>
+	<!--//banner -->
+	<!-- short -->
+	<div class="services-breadcrumb">
+		<div class="inner_breadcrumb">
+			<ul class="short_ls">
+				<li>
+					<a href="{% url 'eduapp:clienthome' %}">Home</a>
+					<span>| |</span>
+				</li>
+				<li> Program </li>
+			</ul>
+		</div>
+	</div>
+	<!-- //short-->
+	<!-- about -->
+	<div class="about-sec" id="about">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					<span>P</span>rogram
+					<!-- <span>{{programobject.title}}</span> -->
+				</h3>
+				<div class="tittle-style">
+
+				</div>
+			</div>
+			<div class="about-sub">
+				<div class="col-md-6 about_bottom_left">
+					<h4>
+						<span>{{programobject.title}}</span>
+					</h4>
+					<p><span style="color: blue;">Duration:</span> {{programobject.duration}}</p>
+					<p>{{programobject.description}}</p>
+					<a class="button-style" href="{% url 'eduapp:clientprogramapply' programobject.pk %}">Join Now</a>
+				</div>
+				<!-- Stats-->
+				<div class="col-md-6 about2-info">
+					<img class ="img-responsive" src="{{programobject.image.url}}"alt="" />
+				</div>
+				<!-- //Stats -->
+				<div class="clearfix"> </div>
+			</div>
+			<div class="about-sub" style="margin-top: 50px">
+				<div class="col-md-6 about_bottom_left">
+					<h4 >
+						<span>Faculty Members</span>
+					</h4><hr>
+					<div class="row">
+						{% for teacher in programobject.teacher_set.all %}
+						{% if teacher.is_hod %}
+						<div class="col-md-6">
+							<img src="{{teacher.photo.url}}" class="img-responsive img-thumbnail">
+							<p style="margin-bottom: 3px">Name: {{teacher.name}}</p>
+							<p style="margin-top: -10px">Email: {{teacher.email}}</p>
+							<p style="margin-top: -10px">Mobile: {{teacher.mobile}}</p>
+							<p style="margin-top: -22px!important">Education: {{teacher.education}}</p>
+							<p style="margin-top: -22px!important">Post: {{teacher.post}}</p>
+							<p style="margin-top: -22px!important">Head of department</p>
+						</div>
+						{% else %}
+						<div class="col-md-6">
+							<img src="{{teacher.photo.url}}" class="img-responsive img-thumbnail">
+							<p>{{teacher.name}}<br>
+							{{teacher.email}}<br>
+							{{teacher.mobile}}</p>
+						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
+					
+				</div>
+				<!-- Stats-->
+				<div class="col-md-6 about_bottom_left">
+					<h4>
+						<span>Semesters</span>
+					</h4><hr>
+					<div class="row">
+						{% for semester in programobject.semester_set.all %}
+						<div class="col-md-6">
+							<h5 style="font-size: 25px">{{semester.title}}</h5>
+							{% for subject in semester.subject_set.all %}
+								<li>{{subject.title}}({{subject.credit_hour}}){{subject.code}}</li>
+							{% endfor %}
+							
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+				<!-- //Stats -->
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
